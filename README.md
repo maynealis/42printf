@@ -1,3 +1,78 @@
+# ft_printf
+
+A custom implementation of the printf function from the C standard library, developed as part of the 42 School curriculum. The implementation handles various format specifiers and optional flags, closely mimicking the behavior of the original printf function.
+
+** Table of contents **
+- [Features](#-Features)
+- [Installation](#-Installation)
+- [Usage](#-Usage)
+- [References](#-References)
+
+## 🎯 Features
+
+### Format Specifier Syntax
+```
+%[arg-number$][flags][width][.precision][length]conversion
+```
+- `arg-number` : Specifies the position of the argument in the argument list. Example: %2$d would print the second argument as a decimal integer. *(Not done in this project)*
+- `flags` : Modifies the output format.
+- `width`: Specifies the minimum number of characters the output should occupy.
+- `precision` : Controls precision for decimal numbers and the number of characters for strings
+- `length` : Modifies the size of the argument*(Not done in this project)*
+- `conversion` : Specifies the type of data to be printed
+
+> [!NOTE]
+> The `width` and `precision` can also be provided dynamically as arguments using `*` in the original function; but this implementation is outside of this project.
+
+### Basic Conversions
+| Conversion | Description |
+|------------|-------------|
+| `%c` | Single character |
+| `%s` | String |
+| `%p` | Pointer address |
+| `%d` | Decimal (base 10) integer |
+| `%i` | Integer |
+| `%u` | Unsigned decimal integer |
+| `%x` | Hexadecimal (base 16) integer lowercase |
+| `%X` | Hexadecimal (base 16) integer uppercase |
+| `%%` | Percentage sign |
+
+### Bonus Features - Supported Flags
+| Flag | Applies to | Description |
+|------|------------|-------------|
+| `-` | All | Left-justifies the output within the given field width |
+| `0` | Numeric | Zero-pads the number to fill the field width. If the  0  and - flags both appear, the 0 flag is ignored. If a precision is given, the 0 flag is ignored. |
+| `.` | d, i, u, x, X, s | Sets precision for numeric conversions. If the precision is given as just '.', the precision is taken to be zero. This gives the minimum number of digits to appear for d, i, u, x, and X conversions, or the maximum number of characters to be printed from a string for s |
+| `#` | x, X | Prepends "0x" or "0X" to non-zero hexadecimal values |
+| ` ` (space) | d, i | Adds a space before positive numbers |
+| `+` | d, i | Always shows sign (+ or -) for numeric values |
+
+## ⚙️ Installation
+
+Clone this repository and compile it.
+```bash
+make
+```
+
+## 🛠 Usage
+
+Include the library in your project
+```c
+#include "ft_pintf.h"
+```
+And use `ft_printf` as `printf`
+
+Examples:
+
+```c
+ft_printf("Hello, %s!\n", "world");      //Output: "Hello, world!"
+ft_printf("Number: %d\n", 42);           //Output: "Number: 42"
+ft_printf("Hexadecimal: %#x\n", 255);    //Output: "Hexadecimal: 0xff" 
+ft_printf("%10s\n", "hello");            //Output: "     hello"
+ft_printf("%-10s\n", "hello");           //Output: "hello     "
+```
+
+
 ## Requisits
 
 |Conversion|Auxiliar function|
@@ -13,38 +88,8 @@
 |%         |write_char       | 
 
 
-### Bonus requisits
 
-c : - width DONE
-s : - width
-
-|flag|with|manual|
-|----|----|------|
-|-  |all?|The  converted  value  is  to  be left adjusted on the field boundary.  (The default is right justification.)  The converted value is padded on the right with  blanks,  rather than on the left with blanks or zeros.|
-|0  ||The value should be zero padded.  For d, i, o, u, x, X, a, A, e, E, f, F, g, and G conversions, the converted value is padded on the left with zeros
- rather than blanks. If the  0  and - flags both appear, the 0 flag is ignored.  If a precision is given with a numeric conversion (d, i, o, u, x, and X), the 0 flag is ignored.   For  other  conversions, the behavior is undefined.|
-|.  |d i u x X|An optional precision, in the form of a period ('.')  followed by an optional decimal digit string.  Instead of a decimal digit string  one  may  write
-       "*"  or  "*m$"  (for  some decimal integer m) to specify that the precision is given in the next argument, or in the m-th argument, respectively, which
-       must be of type int.  If the precision is given as just '.', the precision is taken to be zero.  A negative precision is taken as if the precision were
-       omitted.   This gives the minimum number of digits to appear for d, i, o, u, x, and X conversions, the number of digits to appear after the radix char‐
-       acter for a, A, e, E, f, and F conversions, the maximum number of significant digits for g and G conversions, or the maximum number of characters to be
-       printed from a string for s and S conversions.|
-|#   |x X |The value should be converted to an "alternate form". For x and X conversions, a nonzero result has the string "0x" (or "0X"  for  X conversions)  prepended  to it. For other conversions, the result is undefined.|
-|' '||A blank should be left before a positive number (or empty string) produced by a signed conversion.|
-|+  ||A sign (+ or -) should always be placed before a number produced by  a  signed  conversion.   By default, a sign is used only for negative numbers.  A + overrides a space if both are used.|
-
-Width: An  optional  decimal  digit  string (with nonzero first digit) specifying a minimum field width.  If the converted value has fewer characters than the
-       field width, it will be padded with spaces on the left (or right, if the left-adjustment flag has been given).  Instead of a decimal digit  string  one
-       may  write  "*"  or  "*m$" (for some decimal integer m) to specify that the field width is given in the next argument, or in the m-th argument, respec‐
-       tively, which must be of type int.  A negative field width is taken as a '-' flag followed by a positive field width.  In no case does a nonexistent or
-       small  field  width cause truncation of a field; if the result of a conversion is wider than the field width, the field is expanded to contain the con‐
-       version result.    
-      
--ddddddc
-.ddddddc
-0ddddddc
-
-
+Difference between i and d
 
 
 ## Things I learned
@@ -66,7 +111,6 @@ To correctly retrieve a char from a variadic function, you should cast the resul
 
 
 
-## References
-[variadic functions](https://onepunchcoder.medium.com/variadic-functions-explained-fd3b4ab6fd84)
-[printf](https://www.it.uc3m.es/pbasanta/asng/course_notes/input_output_printf_en.html)
-[IBM documentation printf](https://www.ibm.com/docs/en/i/7.5?topic=functions-printf-print-formatted-characters)
+## 🔗 References
+- [variadic functions](https://onepunchcoder.medium.com/variadic-functions-explained-fd3b4ab6fd84)
+- [Format in printf](https://www.ibm.com/docs/en/i/7.5?topic=functions-printf-print-formatted-characters)

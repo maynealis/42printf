@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_types_bonus.h"
+#include "ft_printf_bonus.h"
 
 char	*parse_char(char c, t_flags flags)
 {

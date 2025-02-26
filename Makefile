@@ -15,7 +15,8 @@ NAME	=	libftprintf.a
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_DIR)/$(INC) -MMD -MP
+CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR) -MMD -MP
+DEBUG	=	-g -fsanitize=address
 
 # Directories
 INC_DIR		=	inc
@@ -26,8 +27,8 @@ OBJ_DIR		=	obj
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Headers #TODO
-INCLUDES	=	$(INC_DIR)/ft_printf.h \
-				$(INC_DIR)/write_types.h \
+INCLUDES	=	$(INC_DIR)/ft_printf.h $(INC_DIR)/ft_printf_bonus.h \
+				#$(INC_DIR)/write_types.h \
 				$(INC_DIR)/utils.h \
 				$(INC_DIR)/libft.h \
 				$(INC_DIR)/ft_printf_bonus.h \
@@ -55,6 +56,12 @@ BLUE		=	\033[0;34m
 CYAN		=	\033[0;36m
 PURPLE		=	\033[0;35m
 RESET		=	\033[0m
+
+ifneq ($(filter debug debug_bonus, $(MAKECMDGOALS)),)
+	COLOR	=	$(YELLOW)
+else
+	COLOR	=	$(GREEN)
+endif
 
 # Targets
 all: $(NAME)

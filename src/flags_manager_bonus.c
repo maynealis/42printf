@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "flags_manager_bonus.h"
+#include "ft_printf_bonus.h"
 
 void	reset_flags(t_flags *flags)
 {

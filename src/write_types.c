@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "write_types.h"
+#include "ft_printf.h"
 
 int	write_char(char c)
 {

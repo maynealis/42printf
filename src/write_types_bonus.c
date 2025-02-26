@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "write_types_bonus.h"
+#include "ft_printf_bonus.h"
 
 int	write_char(char c, t_flags flags)
 {

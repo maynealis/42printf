@@ -15,7 +15,18 @@
 
 # include <stdarg.h> // to use: va_start, va_arg, va_copy, va_end
 # include <stddef.h> // to use: size_t
-# include "write_types.h"
+# include <unistd.h>
+# include "libft.h"
+
+# define FT_BASE_HEXA_MIN "0123456789abcdef"
+# define FT_BASE_HEXA_MAY "0123456789ABCDEF"
+# define FT_BASE_DECIMAL "0123456789"
+
+int	write_char(char c);
+int	write_str(char *str);
+int	write_int(int n);
+int	write_uint(unsigned int n);
+int	write_hexa(unsigned long n, char x, char *prefix);
 
 int	ft_printf(char const *str, ...);
 

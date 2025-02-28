@@ -6,7 +6,7 @@
 #    By: cmayne-p <cmayne-p@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 19:09:37 by cmayne-p          #+#    #+#              #
-#    Updated: 2025/02/28 14:14:44 by cmayne-p         ###   ########.fr        #
+#    Updated: 2025/02/28 14:33:17 by cmayne-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ INC_DIR		=	inc
 LIBFT_DIR	=	libft
 SRC_DIR		=	src
 OBJ_DIR		=	obj
-#ALL_HEADERS	=	$(INC_DIR) $(LIBFT_DIR)/$(INC_DIR) $(LIBFT_DIR)/gnl
 
 LIBFT = $(LIBFT_DIR)/libft.a
 

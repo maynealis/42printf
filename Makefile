@@ -6,7 +6,7 @@
 #    By: cmayne-p <cmayne-p@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 19:09:37 by cmayne-p          #+#    #+#              #
-#    Updated: 2025/02/28 14:33:17 by cmayne-p         ###   ########.fr        #
+#    Updated: 2025/03/02 16:10:15 by cmayne-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ FORCE:
 
 $(LIBFT): FORCE
 	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) bonus -C $(LIBFT_DIR)
 
 clean:
 	@rm -rf $(OBJ_DIR)

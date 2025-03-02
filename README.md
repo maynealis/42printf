@@ -2,6 +2,9 @@
 
 A custom implementation of the printf function from the C standard library, developed as part of the 42 School curriculum. The implementation handles various format specifiers and optional flags, closely mimicking the behavior of the original printf function.
 
+> [!IMPORTANT]
+> When using this library, it also contains the [`libft`](https://github.com/maynealis/42libft) functions.
+
 **Table of contents**
 - [Features](#-Features)
 - [Installation](#-Installation)
@@ -148,4 +151,4 @@ Creating and freeing temporary strings in the correct order was essential for av
 - [variadic functions](https://onepunchcoder.medium.com/variadic-functions-explained-fd3b4ab6fd84)
 - [Format in printf](https://www.ibm.com/docs/en/i/7.5?topic=functions-printf-print-formatted-characters)
 
-[Back to TOP](#-ft_printf)
+[Back to TOP](#ft_printf)

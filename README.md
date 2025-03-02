@@ -2,10 +2,13 @@
 
 A custom implementation of the printf function from the C standard library, developed as part of the 42 School curriculum. The implementation handles various format specifiers and optional flags, closely mimicking the behavior of the original printf function.
 
-** Table of contents **
+**Table of contents**
 - [Features](#-Features)
 - [Installation](#-Installation)
 - [Usage](#-Usage)
+- [Implementation Approach](#-Implementation-Approach)
+- [Key learnings](#-Key-learnings)
+- [Technical challenges](#-Technical-challenges)
 - [References](#-References)
 
 ## 🎯 Features
@@ -72,10 +75,18 @@ ft_printf("%10s\n", "hello");            //Output: "     hello"
 ft_printf("%-10s\n", "hello");           //Output: "hello     "
 ```
 
+## 🏛️ Implementation Approach
+### Core Architecture
+The implementation follows a modular design pattern with distinct components:
 
-## Requisits
+- **Parser**: Analyzes format strings to identify conversions and flags
+- **Flags Manager**: Processes flags
+- **Type Handlers**: Specialized functions for each conversion type
+- **Utility Functions**: Support functions for memory management and string operations
 
-|Conversion|Auxiliar function|
+### Conversion handlers
+
+|Conversion|Handler function|
 |----------|-----------------|
 |c         |write_char       |
 |s         |write_str        |
@@ -88,11 +99,14 @@ ft_printf("%-10s\n", "hello");           //Output: "hello     "
 |%         |write_char       | 
 
 
+> [!NOTE]
+> In this context there is no difference between `i` and `d` conversion.
 
-Difference between i and d
+## 🧠 Key Learnings
 
-
-## Things I learned
+- Variadic functions
+- String Parsing Techniques
+- Structure for flags
 
 ### Argument Promotion
 In C, the va_arg macro is designed to work with the type of argument that is passed to the variadic function, and it uses the promoted types of the arguments as part of its implementation. When you use va_arg with a char type, it will not work directly due to how argument promotion works in C.
@@ -109,8 +123,29 @@ When you call va_arg to extract a char from the argument list, the argument has 
 
 To correctly retrieve a char from a variadic function, you should cast the result of va_arg to char. This is because va_arg always retrieves the type in its promoted form (which will be int), but you can explicitly cast it back to a char after retrieving it.
 
+## 👩🏻‍💻 Technical Challenges
 
+### Flag Priority and Conflicts
+Determining the correct order of flag application was challenging due to:
+
+- Some flags having precedence over others
+- Certain combinations requiring special handling
+
+### Precision vs. Width
+Managing the interaction between precision and width required careful implementation:
+
+- Precision affects the minimum number of digits displayed
+- Width affects the total field size including padding
+- Their combined effect varies by conversion type
+
+### Memory Management
+Creating and freeing temporary strings in the correct order was essential for avoiding memory leaks, especially with:
+
+- Multiple flag applications requiring multiple string transformations
+- Error handling that must free all allocated memory before returning
 
 ## 🔗 References
 - [variadic functions](https://onepunchcoder.medium.com/variadic-functions-explained-fd3b4ab6fd84)
 - [Format in printf](https://www.ibm.com/docs/en/i/7.5?topic=functions-printf-print-formatted-characters)
+
+[Back to TOP](#-ft_printf)
